@@ -36,8 +36,8 @@ function Addpost() {
     const [tag , setTag] = useState("")
     
   return (
-      <form onSubmit={handleSubmit(onSubmit)} className='m-auto bg-cyan-100'>
-        <div className='flex bg-zinc-300 items-center py-2' >
+      <form onSubmit={handleSubmit(onSubmit)} className='m-auto bg-zinc-300'>
+        <div className='flex-col space-y-3 align-middle m-auto w-3/5 bg-zinc-300 flex-wrap items-center py-2' >
             <label className='text-gray-700 font-bold mx-2'>نام :</label>
               <Controller
                   name="name"
@@ -45,7 +45,7 @@ function Addpost() {
                   render={({ field }) => <Input type='input' {...field} />}
               /> 
             <label className='text-gray-700 font-bold mx-2'>سن :</label>
-              <Controller
+             <Controller
                   name="age"
                   control={control}
                   render={({ field }) => <Input type='number' {...field} />}
@@ -57,10 +57,10 @@ function Addpost() {
                   render={({ field }) => <Input type='number' {...field} />}
               /> 
             <label className='text-gray-700 font-bold mx-2'>سامانه ها:</label>
-            <Input value={tag} type='input' onChange={setTag} />
+                <Input value={tag} type='input' onChange={setTag} />
             <div className='mx-1'></div>
               <button onClick={addNewTag} type='button' className='flex rounded-full py-2 px-4 flex-row text-sm items-center text-white bg-labelColor'>افزودن</button>
-            <div className='flex justify-start overflow-scroll flex-wrap items-center mx-2 rounded-full py-2 px-10 bg-zinc-600'>
+            <div className='flex justify-start  overflow-scroll flex-wrap items-center mx-2 rounded-full py-2 px-10 bg-zinc-600'>
                 {tags.map((value , ind)=>{
                     return <div onClick={()=>{const newTag = tags.filter((val)=>val!==value) 
                     setTags(newTag)}}>

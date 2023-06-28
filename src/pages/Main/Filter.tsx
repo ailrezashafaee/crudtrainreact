@@ -1,34 +1,23 @@
-import React,{useState,useContext} from 'react'
+
 import Input from '../../components/Ui/Input'
 import Button from '../../components/Ui/Button'
 import { ReactComponent as SVGIco } from '../../assets/addd.svg'
 import Label from '../../components/Ui/Label'
-import PostKhabar, { PostContextType } from '../../models/posts'
-import { PostContext } from '../../context/Postcontext'
 import {Link} from 'react-router-dom'
 import KhabarService from '../../services/Akhbar'
+import useFilter from './hooks/useFilter'
 export default function Filter() {
-  const { Posts,SetFiltered} = useContext(PostContext) as PostContextType; 
-  const [nameInput, setName]= useState("");
-  const [index, setIndex] = useState(0);
-  const [system, setSystem] = useState("");
-  const handleFilterSubmit = ():void=>{
-  const newPosts = Posts.filter((value : PostKhabar, ind : number)=>{
-      return (value.tags.includes(system) || system==="") &&(!index || index === value.index) && 
-     (nameInput ==="" || value.name===nameInput)
-     ;})
-    SetFiltered(newPosts);
-  }
+  const {data, setData , handleFilterSubmit} = useFilter();
   return (
-    <div className='flex items-center justify-between flex-row'>
-      <div className='flex items-center'>
+    <div className='lg:flex items-center justify-between flex-row md:flex-wrap space-y-3'>
+      <div className='flex items-center md:flex-wrap sm:flex-wrap space-y-3'>
         <span className='text-xs font-medium text-gray-900'>فیلتر براساس:</span>
         <Label>نام گروه :</Label>
-        <div className='w-[300px]'><Input type='input' value={nameInput} onChange={setName} /></div>
+        <div className='xl:w-[300px] lg:w-[200px]'><Input type='input' value={data.name} onChange={setData.setName} /></div>
         <Label>شناسه گروه:</Label>
-        <div className='w-[150px]'><Input type='number' value={index} onChange={setIndex}/></div>
+        <div className='xl:w-[150px] lg:w-[100px]'><Input type='number' value={data.index} onChange={setData.setIndex}/></div>
         <Label>نام سامانه:</Label>
-        <div className="w-[150px] mr-1"><Input type='string' value={system} onChange={setSystem} /></div>
+        <div className="xl:w-[150px] lg:w-[100px] ml-2"><Input type='string' value={data.system} onChange={setData.setSystem} /></div>
         <Button onClick={handleFilterSubmit} value='اعمال فیلتر' apply/>
       </div> 
       <div className='flex items-center flex-row'>

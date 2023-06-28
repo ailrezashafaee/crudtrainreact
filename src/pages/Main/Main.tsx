@@ -16,7 +16,7 @@ export default function Main() {
   }
   
   return (
-    <main className='px-20 py-6'>
+    <main className='px-20 m-auto max-w-[1400px] py-6'>
       <Filter/>
       <hr className='my-4 bg-black text-black border-gray-500'/>
       <Feed/>

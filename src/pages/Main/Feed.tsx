@@ -17,7 +17,7 @@ export default function Feed() {
      SetFiltered(newPosts);
   }
   return (
-      <div className=" grid gap-x-8 gap-y-4 mt-4 w-12/12 grid-cols-2">
+      <div className=" grid gap-x-8 sm:grid-cols-1 m-auto gap-y-4 mt-4 w-12/12  lg:grid-cols-1 xl:grid-cols-2">
         {Filtered.map((value)=>{
             return <PostItem onDelete={onDeleteHandle} key={value.id} item={value}/> 
         })} 

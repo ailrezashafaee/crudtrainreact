@@ -3,7 +3,7 @@ import PostKhabar from "../models/posts";
 class Akhbar{
     private lastId :number =0;
     private _length : number =0
-    http = axios.create({ baseURL: 'http://localhost:3002/'})
+    http = axios.create({ baseURL: 'http://localhost:3030/'})
     async getPosts(limit:number){
         try{
             const response = await this.http.get<PostKhabar[]>('/posts');

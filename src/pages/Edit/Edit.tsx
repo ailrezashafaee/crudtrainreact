@@ -27,10 +27,11 @@ function Edit() {
             setTags([...tags, tag]);
     }
     const onSubmit: SubmitHandler<NewPostForm> = (data) => {
-        if(myPost?.index === data.index && myPost.age === data.age && myPost.name === data.name)
+        if(myPost?.index === data.index && myPost.age === data.age && myPost.name === data.name )
         {
-            alert("You must change the data");
-            return;
+            if(tags.length === myPost.tags.length && tags.every((val :string, inde: number)=> val ===myPost.tags[inde]))
+                {alert("You must change the data");
+                return;}
         }
         const newpost = {
             index: data.index,
@@ -53,8 +54,8 @@ function Edit() {
     const [tag, setTag] = useState("")
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className='m-auto bg-cyan-100'>
-            <div className='flex bg-zinc-300 items-center py-2' >
+        <form onSubmit={handleSubmit(onSubmit)} className='m-auto bg-zinc-300'>
+            <div className='flex-col align-middle space-y-3 m-auto w-4/5 bg-zinc-300 items-center py-2' >
                 <label className='text-gray-700 font-bold mx-2'>نام :</label>
                 <Controller
                     name="name"
@@ -87,7 +88,7 @@ function Edit() {
                         </div>
                     })}
                 </div>
-                <Button type='submit' value='ثبت تغییرات'></Button>
+                <Button type='submit' primary value='ثبت تغییرات'></Button>
             </div>
         </form>
     )
